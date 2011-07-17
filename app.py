@@ -51,12 +51,12 @@ def getItems():
 		if isinstance(entry, xdg.Menu.MenuEntry):
 			item.SetLabel(entry.DesktopEntry.getName().encode("UTF-8"))
 			item.SetDescription((entry.DesktopEntry.getComment()).encode("UTF-8"))
-			iconPath = xdg.IconTheme.getIconPath(entry.DesktopEntry.getIcon(), theme="gartoon", extensions=["png"])
+			iconPath = xdg.IconTheme.getIconPath(entry.DesktopEntry.getIcon(), theme="gnome", extensions=["png"])
 			item.SetProperty("exec", str(entry.DesktopEntry.getExec()))
 		elif isinstance(entry, xdg.Menu.Menu):
 			item.SetLabel(entry.getName().encode("UTF-8"))
 			item.SetDescription((entry.getComment()).encode("UTF-8"))
-			iconPath = xdg.IconTheme.getIconPath(entry.getIcon(), theme="gartoon", extensions=["png"])
+			iconPath = xdg.IconTheme.getIconPath(entry.getIcon(), theme="gnome", extensions=["png"])
 			enterMenuName = entry.Name.encode("UTF-8")
 			if len(_get("menu")) > 0:
 				enterMenuName = _get("menu") + "/" + enterMenuName
