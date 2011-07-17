@@ -1,0 +1,183 @@
+﻿<?xml version="1.0"?>
+<window type="window" id="14000">
+		<onload lang="python"><![CDATA[ 
+import app			
+import mc
+
+app._set("menu", False)
+app._set("menu-name", False)
+app.populate()
+
+]]></onload>
+		<defaultcontrol always="true">2000</defaultcontrol>
+		<allowoverlay>no</allowoverlay>
+		<controls>
+				<include>Common_Background</include>
+				<include>Common_Status</include>
+				<include>Common_Now_Playing</include>
+				
+				<control type="group" id="9000">
+					<include>Window_Fade_Animation</include>
+					<include>BrowseListsAnimation</include>
+					
+					<control type="label" id="300">
+						<include>BrowseMainTitle</include>
+						<label>$INFO[Container(2000).Listitem.Property(custom:parent-menu)]</label>
+					</control>
+					
+					<control type="label">
+						<include>BrowseSubTitle</include>
+						<label>[UPPERCASE][COLOR grey]$INFO[Container(2000).NumItems,(, items)][/COLOR][/UPPERCASE]</label>
+					</control>
+					
+					<control type="group">
+						<posy>30</posy>
+						
+						<!-- LEFT list column -->
+						<control type="list" id="2000">
+							<posx>30</posx>
+							<posy>120</posy>
+							<width>450</width>
+							<height>530</height>
+							<onup>6000</onup>
+							<onright>6000</onright>
+							<onleft>8000</onleft>
+							<ondown>-</ondown>
+							<offsety>4</offsety>
+							<visible>true</visible>
+							<orientation>vertical</orientation>
+							<pagecontrol>60</pagecontrol> <!-- scrollbar -->
+							<itemlayout height="40">
+								<control type="label">
+									<posx>45</posx>
+									<posy>0</posy>
+									<width>380</width>
+									<height>33</height>
+									<font>font21</font>
+									<align>left</align>
+									<aligny>center</aligny>
+									<info>ListItem.Label</info>
+									<textcolor>grey</textcolor>
+									<selectedcolor>grey</selectedcolor>
+								</control>
+							</itemlayout>
+							<focusedlayout height="40">
+								<control type="image">
+									<visible>Control.HasFocus(2000)</visible>
+									<posx>5</posx>
+									<posy>-20</posy>
+									<width>452</width>
+									<height>78</height>
+									<texture border="39">line_view_on.png</texture>
+								</control>
+								<control type="label">
+									<visible>Control.HasFocus(2000)</visible>
+									<posx>43</posx>
+									<posy>0</posy>
+									<width>380</width>
+									<height>33</height>
+									<font>font21b</font>
+									<align>left</align>
+									<aligny>center</aligny>
+									<info>ListItem.Label</info>
+									<scroll>true</scroll>
+									<textcolor>FFFFFFFF</textcolor>
+									<selectedcolor>FFFFFFFF</selectedcolor>
+								</control>
+								<control type="label">
+									<visible>!Control.HasFocus(2000)</visible>
+									<posx>45</posx>
+									<posy>0</posy>
+									<width>380</width>
+									<height>33</height>
+									<font>font21</font>
+									<align>left</align>
+									<aligny>center</aligny>
+									<info>ListItem.Label</info>
+									<textcolor>grey</textcolor>
+									<selectedcolor>grey</selectedcolor>
+								</control>
+							</focusedlayout>
+							<content type="url" url="">
+								<onclick lang="python">app.list_click()</onclick>
+							</content>
+						</control>
+						<!-- END LEFT column -->
+					
+						<!-- SCROLLBAR -->
+						<control type="scrollbar" id="60">
+							<visible>Control.IsVisible(2000)</visible>
+							<posx>485</posx>
+							<posy>120</posy>
+							<width>28</width>
+							<height>530</height>
+							<texturesliderbackground border="14">scrollbar_bg.png</texturesliderbackground>
+							<textureslidernib>-</textureslidernib>
+							<textureslidernibfocus>-</textureslidernibfocus>
+							<texturesliderbar diffuse="nofocus.png" border="14">scrollbar_slider.png</texturesliderbar>
+							<texturesliderbarfocus diffuse="nofocus.png" border="14">scrollbar_slider.png</texturesliderbarfocus>
+							<orientation>vertical</orientation>
+							<showonepage>false</showonepage>
+						</control>
+					
+						<control type="group" id="9001">
+							<posx>540</posx>
+							<posy>120</posy>
+						
+							<control type="image">
+								<width>200</width>
+								<height>134</height>
+								<!--<width>245</width>-->
+								<!--<height>164</height>-->
+								<texture>$INFO[Container(2000).ListItem.ActualIcon]</texture>
+								<info>Container(2000).ListItem.ActualIcon</info>
+							</control>
+						
+							<control type="group">
+								<visible>Control.HasFocus(2000)</visible>
+								<posx>240</posx>
+							
+								<control type="label">
+									<width>450</width>
+									<height>60</height>
+									<align>left</align>
+									<aligny>top</aligny>
+									<label>[UPPERCASE]$INFO[Container(2000).ListItem.Label][/UPPERCASE]</label>
+									<font>font24b</font>
+									<textcolor>title</textcolor>
+								</control>
+								<control type="label">
+									<posy>40</posy>
+									<width>450</width>
+									<height>600</height>
+									<align>left</align>
+									<aligny>top</aligny>
+									<label>$INFO[Container(2000).ListItem.Property(Description)]</label>
+									<font>font22</font>
+									<textcolor>FFFFFFFF</textcolor>
+									<wrapmultiline>true</wrapmultiline>
+								</control>
+							</control>
+						</control>
+					</control>
+				</control>
+				
+				<include>BrowseQueueViewInfo</include>
+			
+				<control type="multiimage">
+				    <posx>540</posx>
+		            <posy>348</posy>
+		            <width>200</width>
+		            <height>24</height>
+		            <imagepath>loading</imagepath>
+		            <timeperimage>12</timeperimage>
+		            <fadetime>4</fadetime>
+		            <pauseatend>0</pauseatend>
+		            <randomize>false</randomize>
+		            <loop>yes</loop>
+		            <aspectratio>keep</aspectratio>
+		            <colordiffuse>title</colordiffuse>
+		            <visible>Container(2000).IsLoading</visible>
+		        </control>
+		</controls>
+</window>

@@ -1,0 +1,16 @@
+<app>
+  <id>de-jher-startapplications</id>
+  <name>Start Applications</name>
+  <version>1.0</version>
+  <description>Start external applications on Linux</description>
+  <thumb>http://qoli.de/static/img/tux.png</thumb>
+  <repository>http://dir.boxee.tv/apps</repository>
+  <media>general</media>
+  <copyright>Jens Herrmann</copyright>
+  <email>jens.herrmann@qoli.de</email>
+  <type>skin</type>
+  <startWindow>app</startWindow>
+  <platform>linux</platform>
+  <minversion>0.9.20</minversion>
+  <test-app>true</test-app>
+</app>
