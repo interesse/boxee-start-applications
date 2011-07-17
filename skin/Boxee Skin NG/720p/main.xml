@@ -126,7 +126,7 @@ app.populate()
 						
 							<control type="image">
 								<width>200</width>
-								<height>134</height>
+								<height>200</height>
 								<!--<width>245</width>-->
 								<!--<height>164</height>-->
 								<texture>$INFO[Container(2000).ListItem.ActualIcon]</texture>
